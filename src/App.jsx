@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate } from "react-router-dom"
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom"
 import Login from "./pages/Login"
 import Register from "./pages/Register"
 import ErrorPage from "./pages/ErrorPage"
@@ -6,9 +6,20 @@ import Home from "./pages/Home"
 import Layout from "./layout"
 import Cart from "./pages/Cart"
 import Product from "./pages/Product"
+import { useEffect } from "react"
+import { useSelector } from "react-redux"
 
 function App() {
   const navigate = useNavigate()
+  const location = useLocation()
+  const token = useSelector(state => state.token.value);
+
+  useEffect(() => {
+    if (!token && location.pathname != '/register') {
+      navigate('/login')
+    }
+  }, [navigate, token])
+
   function ProtectedRoute({
     children,
     isAuthentication,
@@ -33,39 +44,39 @@ function App() {
       {/* protected */}
 
       <Route
-          path="/"
-          element={
-            <ProtectedRoute isAuthentication={true}>
-              <Layout>
-                <Home></Home>
-              </Layout>
-            </ProtectedRoute>
-          }
-        ></Route>
+        path="/"
+        element={
+          <ProtectedRoute isAuthentication={token ? true : false}>
+            <Layout>
+              <Home></Home>
+            </Layout>
+          </ProtectedRoute>
+        }
+      ></Route>
 
       <Route
-          path="/cart"
-          element={
-            <ProtectedRoute isAuthentication={true}>
-              <Layout>
-                <Cart></Cart>
-              </Layout>
-            </ProtectedRoute>
-          }
-        ></Route>
+        path="/cart"
+        element={
+          <ProtectedRoute isAuthentication={token ? true : false}>
+            <Layout>
+              <Cart></Cart>
+            </Layout>
+          </ProtectedRoute>
+        }
+      ></Route>
       <Route
-          path="/product/:id"
-          element={
-            <ProtectedRoute isAuthentication={true}>
-              <Layout>
-                <Product></Product>
-              </Layout>
-            </ProtectedRoute>
-          }
-        ></Route>
+        path="/product/:id"
+        element={
+          <ProtectedRoute isAuthentication={token ? true : false}>
+            <Layout>
+              <Product></Product>
+            </Layout>
+          </ProtectedRoute>
+        }
+      ></Route>
 
     </Routes>
-  
+
   )
 }
 

@@ -2,7 +2,7 @@
   "data": [
     {
       "atributes":{
-        "img": "./src/assets/picture-first.png",
+        "img": "https://picsum.photos/id/213/288/320",
       "name": "Вариативный замок Golden Soft для отеля",
       "description": "Замок дверной электронный Golden Soft GS-200Z-5 имеет роскошный глянцевый блеск, четкие линии, красивые формы.",
       "howUse":"Подходит для установки на деревянную/межкомнатную дверь.",
@@ -16,7 +16,7 @@
 
     {
       "atributes":{
-        "img": "./src/assets/picture-second.png",
+        "img": "https://picsum.photos/id/321/288/320",
       "name": "Дверной Замок Golden Soft для офиса",
       "description": "Замок дверной электронный Golden Soft GS-200Z-5 имеет роскошный глянцевый блеск, четкие линии, красивые формы.",
       "howUse":"Подходит для установки на деревянную/межкомнатную дверь.",
@@ -30,7 +30,7 @@
 
     {
       "atributes":{
-        "img": "./src/assets/picture-third.png",
+        "img": "https://picsum.photos/id/426/288/320",
       "name": "Дверной Замок Golden Soft для офиса",
       "description": "Замок дверной электронный Golden Soft GS-200Z-5 имеет роскошный глянцевый блеск, четкие линии, красивые формы.",
       "howUse":"Подходит для установки на деревянную/межкомнатную дверь.",

@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
-import img from "../assets/picture-second.png"
+import { useDispatch } from "react-redux";
+import { Navigate, useNavigate, useParams } from "react-router-dom"
+import { ADD_ID } from "../redux/idSlice";
 
 function Product() {
+  const dispatch = useDispatch()
   const params = useParams()
   const [data, setData] = useState([])
-  console.log(params);
+  const navigate = useNavigate()
+
   useEffect(() => {
     fetch(`http://localhost:3000/data`)
       .then(res => res.json())
@@ -18,7 +21,11 @@ function Product() {
         console.log(err);
       })
   }, [])
-  console.log(20, data[0]);
+  function hadleSubmit(e) {
+    e.preventDefault()
+    dispatch(ADD_ID(data[0].id))
+    navigate("/cart")
+  }
   return (
     <div className='mx-auto   '>
       {
@@ -41,10 +48,9 @@ function Product() {
             <p className='text-[20px] font-bold 	text-[#161C24]'>33 000₽</p>
             <h3 className='text-[#454F5B] line-through text-[20px] '>39 000₽</h3>
           </div>
-          <button className='bg-[#4295E4] 
-                  scroll-py-4 scroll-px-16 w-[220px] 
-                  h-[50px] text-white text-[16px]	
-                  font-medium	mb-[100px] hover:bg-[#4296e4b0] '>КОРЗИНКА</button>
+          <button 
+          onClick={hadleSubmit}
+          className='bg-[#4295E4] scroll-py-4 scroll-px-16 w-[220px] h-[50px] text-white text-[16px]	font-medium	mb-[100px] hover:bg-[#4296e4b0] '>КОРЗИНКА</button>
         </div>
       </div> : <h1>Topilmadi</h1>
 }
